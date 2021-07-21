@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Quotes from "./Quotes";
+import { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.changeBgColor = this.changeBgColor.bind(this);
+    this.state = {
+      backgroundColors: [
+        "#A30B37",
+        "#BD6B73",
+        "#BBB6DF",
+        "#C6C8EE",
+        "#2C4251",
+        "#F79F79",
+        "#F7D08A",
+        "#87B6A7",
+        "#5B5941",
+      ],
+      selectedColor: "",
+    };
+  }
+  componentDidMount() {
+    this.changeBgColor();
+  }
+
+  changeBgColor() {
+    let color =
+      this.state.backgroundColors[
+        Math.floor(Math.random() * this.state.backgroundColors.length)
+      ];
+    this.setState({
+      selectedColor: color,
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header
+          className={`App-header }`}
+          style={{
+            backgroundColor: this.state.selectedColor,
+            transition: "background-color 1000ms linear",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Quotes action={this.changeBgColor} />
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;

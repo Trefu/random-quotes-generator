@@ -1,0 +1,44 @@
+.quotes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
+  column-gap: 4em;
+  padding: 20px;
+  width: 60vw;
+  height: 50vh;
+  background: rgba(86, 76, 76, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.quote {
+  grid-column: 1/4;
+  grid-row: 1;
+}
+.author {
+  grid-column: 1/4;
+  grid-row: 2;
+  text-align: right;
+  font-size: 0.6em;
+}
+.author:before {
+  content: "- ";
+}
+.quotes-container-hide {
+  opacity: 0;
+}
+
+.quote::before {
+  content: open-quote;
+  color: rgb(187, 183, 220);
+  font-size: 4em;
+  line-height: 0.5;
+}
+
+.blob {
+  z-index: -1;
+}
