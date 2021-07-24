@@ -1,8 +1,45 @@
 import "./App.css";
 import Quotes from "./Quotes";
-import { Component } from "react";
+import { arrRandomVal, backgroundColors, fetchQuotes } from './utils'
+import { useEffect, useState } from "react";
+export const App = () => {
+  const [color, setColor] = useState('');
+  const [quote, setQuote] = useState('');
+  const [quotes, setQuotes] = useState([]);
 
-class App extends Component {
+  const newBgColor = () => {
+    setColor((prevColor) => {
+      let newColor = arrRandomVal(backgroundColors);
+      if (prevColor === newColor) return newBgColor()
+      return newColor
+    })
+  }
+
+  const newQuote = () => {
+    setQuote(arrRandomVal(quotes));
+  }
+
+  useEffect(() => {
+    newBgColor();
+    const fetchData = async () => {
+      const data = await fetchQuotes();
+      setQuotes(data.results)
+      setQuote(newQuote)
+      newQuote()
+      console.log(quote)
+    }
+    fetchData()
+
+  }, [])
+  return (
+    <div className="app-container" style={{ backgroundColor: color }}>
+      <Quotes quote={quote} newBgColor={newBgColor} newQuote={newQuote} quotes={quotes} />
+
+    </div>
+
+  )
+}
+/* class App extends Component {
   constructor(props) {
     super(props);
     this.changeBgColor = this.changeBgColor.bind(this);
@@ -50,6 +87,6 @@ class App extends Component {
       </div>
     );
   }
-}
+} */
 
 export default App;

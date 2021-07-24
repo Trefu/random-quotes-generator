@@ -1,9 +1,33 @@
 import "./Quotes.css";
-import { Component } from "react";
+
 import ButtonSocial from "./ButtonSocial";
 import ButtonNewQuote from "./ButtonNewQuote";
+import { useEffect, useState } from "react";
 
-class Quotes extends Component {
+export const Quotes = (props) => {
+  const { newBgColor, newQuote, quote } = props
+  const [quoteState, setQuoteState] = useState('');
+  useEffect(() => {
+    setQuoteState(quote)
+  }, [quote])
+  return (
+    quoteState ?
+      <div id="quote-box" className="quotes-container">
+        <p className="quote">{quote.content}</p>
+        <p id="autor" className="author">
+          {quote.author}
+        </p>
+        <ButtonNewQuote newBgColor={newBgColor} newQuote={newQuote} />
+        {/*       <ButtonSocial content="facebook" />
+      <ButtonSocial content="twitter" /> */}
+      </div>
+      : <h1>LOADING...</h1>
+  );
+}
+
+
+
+/* class Quotes extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,5 +66,5 @@ class Quotes extends Component {
     );
   }
 }
-
+ */
 export default Quotes;

@@ -1,6 +1,16 @@
 import "./ButtonStyle.css";
-import { Component } from "react";
 
+export const ButtonNewQuote = (props) => {
+  const { newBgColor, newQuote, quotes } = props;
+  const handleClick = (e) => {
+    newBgColor();
+    newQuote();
+  }
+  return (
+    <button id="submitBtn" className="button" onClick={handleClick}>New Quote</button>
+  )
+}
+/* 
 class ButtonNewQuote extends Component {
   handleClick = (e) => {
     e.preventDefault();
@@ -19,6 +29,8 @@ class ButtonNewQuote extends Component {
       </button>
     );
   }
-}
+
+
+} */
 
 export default ButtonNewQuote;
