@@ -4,7 +4,7 @@ export const ButtonNewQuote = (props) => {
   const { newQuote } = props;
 
   return (
-    <button id="submitBtn" className="button" onClick={newQuote}>New Quote</button>
+    <a id='new-quote' href='twitter.com/intent/tweet' id="submitBtn" className="a" onClick={newQuote}>New Quote</a>
   )
 }
 /* 
