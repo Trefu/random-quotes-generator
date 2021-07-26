@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { arrRandomVal } from "./utils";
 
 export const Quotes = (props) => {
-  const { newBgColor, quotes } = props
+  const { quotes } = props
   const [quote, setQuote] = useState('');
   const [fading, setFading] = useState(false);
   const newQuote = () => {
