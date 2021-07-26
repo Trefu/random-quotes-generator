@@ -1,13 +1,10 @@
 import "./ButtonStyle.css";
 
 export const ButtonNewQuote = (props) => {
-  const { newBgColor, newQuote, quotes } = props;
-  const handleClick = (e) => {
-    newBgColor();
-    newQuote();
-  }
+  const { newQuote } = props;
+
   return (
-    <button id="submitBtn" className="button" onClick={handleClick}>New Quote</button>
+    <button id="submitBtn" className="button" onClick={newQuote}>New Quote</button>
   )
 }
 /* 

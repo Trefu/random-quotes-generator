@@ -1,10 +1,16 @@
 import "./App.css";
 import Quotes from "./Quotes";
+import Loading from './Loading'
 import { arrRandomVal, backgroundColors, fetchQuotes } from './utils'
 import { useEffect, useState } from "react";
 export const App = () => {
+
   const [color, setColor] = useState('');
-  const [quote, setQuote] = useState('');
+
+  //Frase actual
+
+
+  //Array con todas las frases fetcheadas
   const [quotes, setQuotes] = useState([]);
 
   const newBgColor = () => {
@@ -15,25 +21,25 @@ export const App = () => {
     })
   }
 
-  const newQuote = () => {
-    setQuote(arrRandomVal(quotes));
-  }
+  //recibe toma un array de frases y selecciona una al azar
+
 
   useEffect(() => {
     newBgColor();
     const fetchData = async () => {
       const data = await fetchQuotes();
-      setQuotes(data.results)
-      setQuote(newQuote)
-      newQuote()
-      console.log(quote)
+      setQuotes([...data.results]);
     }
     fetchData()
 
-  }, [])
+  }, []);
+
+
+  if (quotes.length === 0) return <Loading />
   return (
+
     <div className="app-container" style={{ backgroundColor: color }}>
-      <Quotes quote={quote} newBgColor={newBgColor} newQuote={newQuote} quotes={quotes} />
+      <Quotes newBgColor={newBgColor} quotes={quotes} />
 
     </div>
 

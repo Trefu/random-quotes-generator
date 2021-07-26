@@ -3,29 +3,57 @@ import "./Quotes.css";
 import ButtonSocial from "./ButtonSocial";
 import ButtonNewQuote from "./ButtonNewQuote";
 import { useEffect, useState } from "react";
+import { arrRandomVal } from "./utils";
 
 export const Quotes = (props) => {
-  const { newBgColor, newQuote, quote } = props
-  const [quoteState, setQuoteState] = useState('');
+  const { newBgColor, quotes } = props
+  const [quote, setQuote] = useState('');
+  const [fading, setFading] = useState(false);
+  const newQuote = () => {
+    setQuote((prevQuote) => {
+      let pickedQuote = arrRandomVal(quotes);
+      if (pickedQuote === prevQuote) return newQuote();
+      return pickedQuote;
+    });
+
+  }
+
+  const handleClick = () => {
+
+    setFading(true)
+    console.log(fading)
+    setTimeout(() => {
+      newQuote()
+
+      console.log(fading)
+      setFading(false)
+    }, 2000);
+  }
+
+
   useEffect(() => {
-    setQuoteState(quote)
-  }, [quote])
+    newQuote()
+  }, [])
+
   return (
-    quoteState ?
-      <div id="quote-box" className="quotes-container">
+    <>
+      <div id="quote-box" className={`quotes-container successfully-saved ${fading ? 'hide-opacity' : ''}`}>
         <p className="quote">{quote.content}</p>
         <p id="autor" className="author">
           {quote.author}
         </p>
-        <ButtonNewQuote newBgColor={newBgColor} newQuote={newQuote} />
-        {/*       <ButtonSocial content="facebook" />
-      <ButtonSocial content="twitter" /> */}
+        <ButtonNewQuote newBgColor={newBgColor} newQuote={handleClick} />
+        <ButtonSocial content="facebook" />
+        <ButtonSocial content="twitter" />
       </div>
-      : <h1>LOADING...</h1>
-  );
+
+    </>
+  )
 }
 
-
+/*         <ButtonNewQuote newBgColor={newBgColor} newQuote={newQuote} />
+        {       <ButtonSocial content="facebook" />
+      <ButtonSocial content="twitter" /> } */
 
 /* class Quotes extends Component {
   constructor(props) {

@@ -16,6 +16,8 @@
 }
 
 .quote {
+  font-size: 1.2rem;
+  font-weight: 600;
   grid-column: 1/4;
   grid-row: 1;
 }
@@ -41,4 +43,20 @@
 
 .blob {
   z-index: -1;
+}
+
+
+.successfully-saved.hide-opacity{
+  opacity: 0;
+}
+
+.successfully-saved {
+  color: #FFFFFF;
+  text-align: center;
+
+  -webkit-transition: opacity 2s ease-in-out;
+  -moz-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  -o-transition: opacity 2s ease-in-out;
+   opacity: 1;
 }
