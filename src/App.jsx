@@ -4,6 +4,7 @@ import Loading from './Loading'
 import { arrRandomVal, backgroundColors, fetchQuotes } from './utils'
 import { useEffect, useState } from "react";
 export const App = () => {
+  const [isLoaded, setIsloaded] = useState(false)
   const [color, setColor] = useState('');
   //Array con todas las frases fetcheadas
   const [quotes, setQuotes] = useState([{
@@ -17,10 +18,31 @@ export const App = () => {
   },
   {
     content: 'It is true that today there was a role xd *vanish*',
-    author: 'Andres Caballero Streppel'
+    author: 'Andrés Caballero Streppel'
+  },
+  {
+    content: 'Alea iacta est',
+    author: 'Mariano Tomás Menéndez Guerrero'
+
+  },
+  {
+    content: 'Ñi Ñi Ñi Ñi',
+    author: 'Luca Andrea Maltauro'
+  },
+  {
+    content: "if you can't kill them build a castle behind",
+    author: 'Mariano Tomás Menéndez Guerrero'
+
+  },
+  {
+    content: 'and if you tell the anecdote?',
+    author: 'The Patas'
+  },
+  {
+    content: 'Seventh letter of the alphabet',
+    author: 'Juan Sebastian Rodriguez Izquierdo'
   }
   ]);
-
   const newBgColor = () => {
     setColor((prevColor) => {
       let newColor = arrRandomVal(backgroundColors);
@@ -37,13 +59,15 @@ export const App = () => {
     const fetchData = async () => {
       const data = await fetchQuotes();
       setQuotes([...quotes, ...data.results]);
+      setIsloaded(true)
     }
     fetchData()
 
   }, []);
 
 
-  if (quotes.length === 0) return <Loading />
+  if (!isLoaded) return <Loading />
+  console.log(quotes)
   return (
 
     <div className="app-container" style={{ backgroundColor: color }}>

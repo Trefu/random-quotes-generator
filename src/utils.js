@@ -15,7 +15,7 @@ export const backgroundColors = [
 ]
 
 export const fetchQuotes = async () => {
-    const res = await fetch('https://api.quotable.io/quotes?limit=15');
+    const res = await fetch('https://api.quotable.io/quotes?limit=10');
     const data = await res.json()
     return data
 }
