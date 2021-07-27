@@ -39,7 +39,7 @@ export const App = () => {
     author: 'The Patas'
   },
   {
-    content: 'Seventh letter of the alphabet',
+    content: 'Sixth letter of the alphabet',
     author: 'Juan Sebastian Rodriguez Izquierdo'
   }
   ]);
