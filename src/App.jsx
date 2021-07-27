@@ -30,7 +30,7 @@ export const App = () => {
     author: 'Luca Andrea Maltauro'
   },
   {
-    content: "if you can't kill them build a castle behind",
+    content: "if you can't kill them build a castle behind them",
     author: 'Mariano Tomás Menéndez Guerrero'
 
   },
