@@ -4,14 +4,22 @@ import Loading from './Loading'
 import { arrRandomVal, backgroundColors, fetchQuotes } from './utils'
 import { useEffect, useState } from "react";
 export const App = () => {
-
   const [color, setColor] = useState('');
-
-  //Frase actual
-
-
   //Array con todas las frases fetcheadas
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState([{
+    content: "HIT 'EM YIYIII HIT' EM!!!!!",
+    author: 'Augusto Narvaez'
+
+  },
+  {
+    content: "Don't put illusion sausages on the grill of decadence",
+    author: 'Mauro Gaston'
+  },
+  {
+    content: 'It is true that today there was a role xd *vanish*',
+    author: 'Andres Caballero Streppel'
+  }
+  ]);
 
   const newBgColor = () => {
     setColor((prevColor) => {
@@ -28,7 +36,7 @@ export const App = () => {
     newBgColor();
     const fetchData = async () => {
       const data = await fetchQuotes();
-      setQuotes([...data.results]);
+      setQuotes([...quotes, ...data.results]);
     }
     fetchData()
 

@@ -1,6 +1,8 @@
 import "./Quotes.css";
+import './Loading'
 import { useEffect, useState } from "react";
 import { arrRandomVal } from "./utils";
+import Loading from "./Loading";
 
 export const Quotes = (props) => {
   const { quotes, newBgColor } = props
@@ -27,7 +29,7 @@ export const Quotes = (props) => {
   useEffect(() => {
     newQuote()
   }, [])
-
+  if (!quote) return <Loading />
   return (
     <>
       <div id="quote-box" className={`quotes-container successfully-saved ${fading ? 'hide-opacity' : ''}`}>
@@ -36,7 +38,7 @@ export const Quotes = (props) => {
           {quote.author}
         </p>
         <button className={`link ${fading ? 'hide' : ''}`} onClick={handleClick} id='new-quote'>New Quote</button>
-        <a className={`link ${fading ? 'hide' : ''}`} id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${quote.content}`} >Tweet</a>
+        <a className={`link ${fading ? 'hide' : ''}`} id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${quote.content}%0A-${quote.author}`} >Tweet</a>
       </div>
 
     </>
