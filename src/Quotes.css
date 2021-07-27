@@ -14,6 +14,9 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+#quote-box {
+  user-select: none;
+}
 
 .quote {
   font-size: 1.2rem;
