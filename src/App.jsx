@@ -39,7 +39,7 @@ export const App = () => {
   return (
 
     <div className="app-container" style={{ backgroundColor: color }}>
-      <Quotes quotes={quotes} />
+      <Quotes quotes={quotes} newBgColor={newBgColor} />
 
     </div>
 

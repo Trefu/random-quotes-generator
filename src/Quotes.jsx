@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { arrRandomVal } from "./utils";
 
 export const Quotes = (props) => {
-  const { quotes } = props
+  const { quotes, newBgColor } = props
   const [quote, setQuote] = useState('');
   const [fading, setFading] = useState(false);
   const newQuote = () => {
@@ -20,9 +20,9 @@ export const Quotes = (props) => {
     setTimeout(() => {
       newQuote()
       setFading(false)
+      newBgColor()
     }, 2000);
   }
-
 
   useEffect(() => {
     newQuote()
@@ -35,13 +35,12 @@ export const Quotes = (props) => {
         <p id="author" className="author">
           {quote.author}
         </p>
-        <button className="link" onClick={handleClick} id='new-quote'>New Quote</button>
-        <a className="link" id="tweet-quote" href="https://twitter.com/intent/tweet">Tweet</a>
+        <button className={`link ${fading ? 'hide' : ''}`} onClick={handleClick} id='new-quote'>New Quote</button>
+        <a className={`link ${fading ? 'hide' : ''}`} id="tweet-quote" href={`https://twitter.com/intent/tweet?text=${quote.content}`} >Tweet</a>
       </div>
 
     </>
   )
 }
-
 
 export default Quotes;

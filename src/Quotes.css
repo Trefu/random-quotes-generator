@@ -50,6 +50,9 @@
   opacity: 0;
 }
 
+.hide {
+  pointer-events: none;
+}
 .successfully-saved {
   color: #FFFFFF;
   text-align: center;
